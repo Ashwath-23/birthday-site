@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+  text-align: center;
+  overflow-x: hidden;
+}
+
+/* 🎉 Title */
+.title {
+  color: #fff;
+  font-size: 48px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px rgba(255,255,255,0.6),
+               0 0 20px rgba(255,105,180,0.8);
+  animation: floatGlow 3s ease-in-out infinite;
+}
+
+@keyframes floatGlow {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Sections */
+.section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 🎂 Cake */
+.cake {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  cursor: pointer;
+}
+
+.plate {
+  width: 240px;
+  height: 20px;
+  background: #ccc;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  left: -10px;
+}
+
+.layer {
+  position: absolute;
+  width: 220px;
+  height: 50px;
+  border-radius: 12px;
+}
+
+.layer-bottom { bottom: 20px; background: #8b4513; }
+.layer-middle { bottom: 60px; background: #a0522d; }
+.layer-top { bottom: 100px; background: #cd853f; }
+
+.icing {
+  position: absolute;
+  bottom: 120px;
+  width: 220px;
+  height: 35px;
+  background: white;
+  border-radius: 12px;
+}
+
+.cake-text {
+  position: absolute;
+  bottom: 130px;
+  width: 100%;
+  font-weight: bold;
+  color: #ff4d6d;
+  font-size: 20px;
+}
+
+/* Knife */
+.knife {
+  position: absolute;
+  top: -60px;
+  right: -80px;
+  width: 120px;
+  height: 10px;
+  background: silver;
+  transform: rotate(45deg);
+  opacity: 0;
+}
+
+.cut .knife {
+  animation: cutKnife 1s forwards;
+  opacity: 1;
+}
+
+@keyframes cutKnife {
+  to { transform: translate(-120px,120px) rotate(45deg); }
+}
+
+.cut .layer,
+.cut .icing {
+  animation: split 1s forwards;
+}
+
+@keyframes split {
+  to { clip-path: inset(0 50% 0 0); }
+}
+
+/* 🎁 Gift */
+#gift {
+  display: none;
+  cursor: pointer;
+}
+
+.gift-box {
+  width: 100px;
+  height: 100px;
+  background: #ff4d6d;
+  margin: auto;
+  position: relative;
+}
+
+.gift-lid {
+  width: 100px;
+  height: 20px;
+  background: #ff1e4d;
+  position: absolute;
+  top: -20px;
+}
+
+.open .gift-lid {
+  animation: openLid 1s forwards;
+}
+
+@keyframes openLid {
+  to { transform: translateY(-60px) rotate(-20deg); }
+}
+
+/* 💌 Card */
+#card {
+  display: none;
+}
+
+.card-box {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 700px;
+  margin: auto;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+/* 📸 Gallery */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* 🎉 Confetti */
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  top: 0;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎉 Title + Cake -->
+<div class="section" id="cake-section">
+  <h1 class="title">Happy Birthday 🎉</h1>
+  <h2>Tap the cake 🎂</h2>
+
+  <div class="cake" onclick="cutCake()">
+    <div class="knife"></div>
+    <div class="plate"></div>
+
+    <div class="layer layer-bottom"></div>
+    <div class="layer layer-middle"></div>
+    <div class="layer layer-top"></div>
+
+    <div class="icing"></div>
+    <div class="cake-text">Yuva ❤️</div>
+  </div>
+</div>
+
+<!-- 🎁 Gift -->
+<div class="section">
+  <div id="gift" onclick="openGift()">
+    <div class="gift-box">
+      <div class="gift-lid"></div>
+    </div>
+    <p>Tap to open 🎁</p>
+  </div>
+</div>
+
+<!-- 💌 Card + Photos -->
+<div class="section" id="card">
+  <div class="card-box">
+
+    <h1>Happy Birthday ❤️</h1>
+
+    <p>Hi Yuva, enna jolly ah irruka pola !! Naa irruken la unkooda aprm epdi jolly ah ilama irrupa eheee... .</p>
+    <p>Hand made ah panna sonne but naa pannadhu varala so I thought of going with this!!</p>
+    <p>Eppovumae jolly ah irru shree kutty... romba lam overthink pannadha edhuvum ippodhaiku be chill</p>
+    <p>Next bday ku aachum en kooda irru mudinja :) I wanted to spend your bday with you but yeah....</p>
+    <p>Unga akka marriage irrukum so next akka might not be there at the time of your bday adhaan stress pannala</p>
+    <p>Next time kandipa en kooda dhan ok ah !? and also naa fit agi kamikure nee sonna mari</p>
+    <p>Neeyum ready ah irru nee sonnadhuku😉😏!!</p>
+    <p>And also promise me that we keep adding more & more memories from now.....⛰️🏝️</p>
+    <p>Also don't act maturedly with me, I want the inner child in you❤️</p>
+    <p>To more and more fights, memories, love..... but always remember</p>
+    <p>Cake and gift animation konjam nala illa but adjust panniko😂😂😶‍🌫️ </p>
+    <p>You mean everything to me 💖</p>
+
+    <h3>Some of our Cherished Moments 📸</h3>
+
+    <div class="gallery">
+      <img src="photo1.jpeg">
+      <img src="photo2.jpeg">
+      <img src="photo3.jpeg">
+      <img src="photo4.jpeg">
+      <img src="photo5.jpeg">
+    </div>
+
+  </div>
+</div>
+
+<!-- 🎵 Music -->
+<audio id="bg-music" src="your-music1.mp3" loop></audio>
+
+<script>
+function cutCake() {
+  document.querySelector('.cake').classList.add('cut');
+
+  document.getElementById('bg-music').play();
+  confetti();
+
+  setTimeout(() => {
+    document.getElementById('gift').style.display = 'block';
+    window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+  }, 1200);
+}
+
+function openGift() {
+  document.querySelector('.gift-box').classList.add('open');
+
+  setTimeout(() => {
+    document.getElementById('card').style.display = 'flex';
+    document.getElementById('card').scrollIntoView({ behavior: 'smooth' });
+  }, 800);
+}
+
+/* 🎉 Confetti */
+function confetti() {
+  for (let i = 0; i < 100; i++) {
+    let c = document.createElement('div');
+    c.className = 'confetti';
+    c.style.left = Math.random()*100+'vw';
+    c.style.background = ['#ff6f91','#ffc75f','#f9f871','#a0e7e5'][Math.floor(Math.random()*4)];
+    c.style.animationDuration = (Math.random()*2+2)+'s';
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),4000);
+  }
+}
+</script>
+
+</body>
+</html>
